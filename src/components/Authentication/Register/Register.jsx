@@ -105,6 +105,7 @@ export const Register = () => {
         <div className="reg_submit">
           <input id="reg_submit" type="submit" placeholder="Submit" />
         </div>
+        <p>already have an account, click here</p>
       </form>
     </div>
   );

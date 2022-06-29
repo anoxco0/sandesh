@@ -1,0 +1,43 @@
+.login{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form{
+    width: 25%;
+    text-align: center;
+    color: white;
+}
+
+.login_password, .login_email, .login_submit{
+    width: 100%;
+    background-color: white;
+    border: 1px solig gray;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 20px;
+}
+.login_password svg{
+    padding: 5px 10px;
+}
+#login_password, #login_email, #login_submit{
+    padding: 5px 10px;
+    flex-grow: 1;
+    border: transparent;
+    outline: transparent;
+    height: 40px;
+}
+.login_submit{
+    background-color: gray;
+    color: white;
+}
+.login_submit input{
+    background-color: transparent;
+    color : white;
+    cursor: pointer;
+}
