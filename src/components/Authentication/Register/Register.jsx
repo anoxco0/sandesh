@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase-config";
 import "./register.css";
-import { userName } from "../../../redux/Authentication/action";
+import { isAuth, userName } from "../../../redux/Authentication/action";
 
 export const Register = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [passVisibility, setPassVisibility] = useState("password");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +32,9 @@ export const Register = () => {
         setUser(currentUser);
       });
     dispatch(userName(user.email));
-  }, [dispatch, user]);
+    dispatch(isAuth(true));
+    if(user.email) navigate('/')
+  }, [dispatch, navigate, user]);
 
   return (
     <div className="register" style={{ backgroundColor: theme[1] }}>
