@@ -1,0 +1,21 @@
+.con_nav{
+    width: calc (100% - 19px);
+    height: 59px;
+    display: flex;
+    padding: 9.5px;
+    align-items: center;
+    justify-content: space-between;
+}
+.profile_pic{
+    width: 40px;
+    height: 40px;
+    border: 1px solid gray;
+    border-radius: 50%;
+}
+
+.con_nav_icons{
+    display: flex;
+    height: 59px;
+    align-items: center;
+    gap: 25px;
+}

@@ -6,7 +6,7 @@ import './contacts.css';
 export const Contacts = ()=>{
 
     return (
-        <div>
+        <div className='contacts'>
             <Navbar/>
             <Search/>
             <AllContacts/>
