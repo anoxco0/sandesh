@@ -32,8 +32,7 @@ export const Register = () => {
         setUser(currentUser);
       });
     dispatch(userName(user.email));
-    dispatch(isAuth(true));
-    if(user.email) navigate('/')
+    if(user.email){ navigate('/'); dispatch(isAuth(true));}
   }, [dispatch, navigate, user]);
 
   return (
