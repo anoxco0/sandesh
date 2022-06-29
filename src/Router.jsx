@@ -10,7 +10,7 @@ const PrivateRoute = ({isAuthenticated, child}) =>{
 
 export const Router = ()=>{
     const {isAuthenticated} = useSelector(store=>store.authReducer);
-    console.log(isAuthenticated)
+    // console.log(isAuthenticated)
     return(
         <Routes>
            <Route path="/" element={ 
