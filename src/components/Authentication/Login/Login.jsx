@@ -31,10 +31,9 @@ export const Login = () => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
-    // console.log(user.email)
     dispatch(userName(user.email));
-    dispatch(isAuth(true));
-    if(user.email) navigate('/')
+    
+    if(user.email){ dispatch(isAuth(true)); navigate('/');}
   }, [dispatch, navigate, user]);
 
 
