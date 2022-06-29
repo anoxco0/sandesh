@@ -1,39 +1,34 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {Link, useNavigate} from "react-router-dom"
+import { 
+  // useEffect,
+   useState } from "react";
+import { useSelector } from "react-redux";
+import {Link} from "react-router-dom"
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
+  // onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase-config";
 import "./register.css";
-import { isAuth, userName } from "../../../redux/Authentication/action";
+// import { isAuth, userName } from "../../../redux/Authentication/action";
 
 export const Register = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
   const [passVisibility, setPassVisibility] = useState("password");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState("");
+  // const [user, setUser] = useState("");
   const { theme } = useSelector((store) => store.settingReducer);
   
   const register = async (e) => {
       e.preventDefault();
       try {
-          await createUserWithEmailAndPassword(auth, email, password);
+          const user = await createUserWithEmailAndPassword(auth, email, password);
+          console.log(user);
         } catch (error) {
             console.log(error.messege);
         }
     };
-    
-    useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    dispatch(userName(user.email));
-    if(user.email){ dispatch(isAuth(true));}
-  }, [dispatch, navigate, user]);
 
   return (
     <div className="register" style={{ backgroundColor: theme[1] }}>

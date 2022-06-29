@@ -1,39 +1,46 @@
 import "./login.css";
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {Link, useNavigate} from "react-router-dom";
+import { 
+  // useEffect,
+   useState } from "react";
+import { useSelector, 
+  // useDispatch 
+} from "react-redux";
+import {Link, 
+  // useNavigate
+} from "react-router-dom";
 import {
   signInWithEmailAndPassword,
-  onAuthStateChanged,
+  // onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase-config";
-import { isAuth, userName } from "../../../redux/Authentication/action";
+// import { isAuth, userName } from "../../../redux/Authentication/action";
 
 export const Login = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate()
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate()
   const [passVisibility, setPassVisibility] = useState("password");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState("");
+  // const [user, setUser] = useState("");
   const { theme } = useSelector((store) => store.settingReducer);
 
   const login = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const user = await signInWithEmailAndPassword(auth, email, password);
+      console.log(user);
     } catch (error) {
       console.log(error.messege);
     }
   };
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    dispatch(userName(user.email));
-    if(user.email){ dispatch(isAuth(true));}
-  }, [dispatch, navigate, user]);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (currentUser) => {
+  //     setUser(currentUser);
+  //   });
+  //   dispatch(userName(user.email));
+  //   if(user.email){ dispatch(isAuth(true));}
+  // }, [dispatch, navigate, user]);
 
 
   return (
