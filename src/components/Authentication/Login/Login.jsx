@@ -1,8 +1,9 @@
 import "./login.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import {Link} from "react-router-dom";
 import {
-  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase-config";
@@ -19,7 +20,7 @@ export const Login = () => {
   const login = async (e) => {
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.log(error.messege);
     }
@@ -31,7 +32,7 @@ export const Login = () => {
     });
     dispatch(userName(user.email));
   }, [dispatch, user]);
-  console.log(user);
+
 
   return (
     <div className="login" style={{ backgroundColor: theme[1] }}>
@@ -111,6 +112,7 @@ export const Login = () => {
         <div className="login_submit">
           <input id="login_submit" type="submit" placeholder="Submit" />
         </div>
+        <p>No account, <Link to={"/register"}>click here</Link></p>
       </form>
     </div>
   );

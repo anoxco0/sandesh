@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import {Link} from "react-router-dom"
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -31,7 +32,6 @@ export const Register = () => {
       });
     dispatch(userName(user.email));
   }, [dispatch, user]);
-  console.log(user)
 
   return (
     <div className="register" style={{ backgroundColor: theme[1] }}>
@@ -105,7 +105,7 @@ export const Register = () => {
         <div className="reg_submit">
           <input id="reg_submit" type="submit" placeholder="Submit" />
         </div>
-        <p>already have an account, click here</p>
+        <p>already have an account, <Link to={"/login"}>click here</Link> </p>
       </form>
     </div>
   );

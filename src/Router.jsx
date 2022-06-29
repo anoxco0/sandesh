@@ -4,20 +4,19 @@ import { Register } from "./components/Authentication/Register/Register"
 import { Home } from "./components/UI/Home/Home";
 import { useSelector } from "react-redux";
 
-const PrivateRoute=({isAuthenticated, children})=>{
-    return isAuthenticated?children:<Navigate to={"/register"} />;
-  }
+const PrivateRoute = ({isAuthenticated, child}) =>{
+   return isAuthenticated?child:<Navigate to="/login"/>
+}
 
 export const Router = ()=>{
-    const {isAuthenticated } = useSelector(store=>store.authReducer); 
-
+    const {isAuthenticated} = useSelector(store=>store.authReducer);
     return(
         <Routes>
-           <Route path="/" element={
+           <Route path="/" element={ 
             <PrivateRoute isAuthenticated={isAuthenticated}>
-              <Home/>
+                <Home/>
             </PrivateRoute>
-          } />
+            } />
            <Route path="/login" element={<Login/>} />
            <Route path="/register" element={<Register/>} />
         </Routes>

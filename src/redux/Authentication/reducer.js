@@ -1,22 +1,29 @@
-import { isAuth, USER_NAME } from "./action"
+import { AUTHENTICATION_LOADING, IS_AUTHENTICATED, USER_NAME } from "./action"
 
 
 const init = {
+    authLoading : false,
    isAuthenticated : false,
    username:"",
 }
 
 export const authReducer = (store=init, {type, payload}) =>{
     switch(type){
-        case isAuth:
+        case AUTHENTICATION_LOADING:
+            return {
+                ...store,
+                authLoading:true
+            }
+        case IS_AUTHENTICATED:
            return {
             ...store,
-            isAuthenticated:payload
-           }
+            isAuthenticated:payload,
+        }
         case USER_NAME:
             return{
                 ...store,
-                username:payload
+                username:payload,
+                authLoading:false
             }
         default :
         return store
