@@ -28,11 +28,11 @@ export const Register = () => {
     };
     
     useEffect(() => {
-      onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
-      });
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
     dispatch(userName(user.email));
-    if(user.email){ navigate('/'); dispatch(isAuth(true));}
+    if(user.email){ dispatch(isAuth(true));}
   }, [dispatch, navigate, user]);
 
   return (

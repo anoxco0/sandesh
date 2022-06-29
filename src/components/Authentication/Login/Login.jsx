@@ -32,8 +32,7 @@ export const Login = () => {
       setUser(currentUser);
     });
     dispatch(userName(user.email));
-    
-    if(user.email){ dispatch(isAuth(true)); navigate('/');}
+    if(user.email){ dispatch(isAuth(true));}
   }, [dispatch, navigate, user]);
 
 
