@@ -16,12 +16,9 @@ import { auth } from "../firebase-config";
 // import { isAuth, userName } from "../../../redux/Authentication/action";
 
 export const Login = () => {
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate()
   const [passVisibility, setPassVisibility] = useState("password");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [user, setUser] = useState("");
   const { theme } = useSelector((store) => store.settingReducer);
 
   const login = async (e) => {
@@ -33,16 +30,6 @@ export const Login = () => {
       console.log(error.messege);
     }
   };
-
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (currentUser) => {
-  //     setUser(currentUser);
-  //   });
-  //   dispatch(userName(user.email));
-  //   if(user.email){ dispatch(isAuth(true));}
-  // }, [dispatch, navigate, user]);
-
-
   return (
     <div className="login" style={{ backgroundColor: theme[1] }}>
       <form onSubmit={(e) => login(e)}>

@@ -6,6 +6,7 @@
     height: 196px;
     padding: 9px 32px;
     border-radius: 5px;
+    box-shadow: 0 0 .2em hsl(200, 19%, 38%);
 }
 
 .float_chat>div{
