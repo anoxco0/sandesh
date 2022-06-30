@@ -1,8 +1,11 @@
 import { useSelector } from "react-redux";
+import {FloatMenu} from "../FloatMenu/FloatMenu"
 import "./navbar.css";
 import IconButton from '@mui/material/IconButton';
+import { useState } from "react";
 
 export const Navbar = () => {
+  const [nav, setNav] = useState(false);
   const { theme } = useSelector((store) => store.settingReducer);
   return (
     <div className="con_nav" style={{ background: theme[0] }}>
@@ -20,7 +23,7 @@ export const Navbar = () => {
         </svg>
       </IconButton>
       <IconButton>
-        <svg viewBox="0 0 24 24" width="30px"className="">
+        <svg viewBox="0 0 24 24" width="30px"className="" onClick={()=>setNav(!nav)}>
           <title>Menu</title>
           <path
             fill="rgba(255, 255, 255, 0.6)"
@@ -29,6 +32,7 @@ export const Navbar = () => {
         </svg>
       </IconButton>
       </div>
+      {nav?<FloatMenu/>:""}
     </div>
   );
 };

@@ -1,0 +1,16 @@
+.float_menu{
+    width: 134px;
+    height: 240px;
+    position: fixed;
+    top: 70px;
+    left: 18%;
+    box-shadow: 0 0 .2em hsl(200, 19%, 38%);
+    padding: 20px 30px;
+}
+.float_menu>div{
+    color: white;
+    height: 37px;
+    font-size: 16px;
+    line-height: 14.5px;
+    display: flex;
+}
