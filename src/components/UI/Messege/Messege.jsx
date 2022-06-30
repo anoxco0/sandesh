@@ -2,6 +2,7 @@ import './messege.css';
 import {useSelector} from "react-redux"
 // import image from './logo.png';
 import { MessNav } from '../MessegeNav/MessNav';
+import { MessSearch } from '../MessSearch/MessSearch';
 export const Messege = ()=>{
     const {theme} = useSelector(store=>store.settingReducer);
     return (
@@ -12,6 +13,7 @@ export const Messege = ()=>{
         // </div>
         <div className='messeges' style={{backgroundColor:theme[2]}}>
             <MessNav/>
+            <MessSearch/>
         </div>
     )
 }

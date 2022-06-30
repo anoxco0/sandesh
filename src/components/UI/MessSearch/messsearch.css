@@ -1,0 +1,19 @@
+.mess_search{
+    margin-top: auto;
+    width: calc (100% - 40px);
+    height: 59px;
+    padding: 9px 20px;
+    display: flex;
+    align-items: center;
+}
+.mess_search>input{
+    flex-grow: 1;
+    height: 49px;
+    border: transparent;
+    background-color: rgba(255, 255, 255, 0.085);
+    outline: transparent;
+    border-radius: 8px;
+    padding: 0 20px;
+    font-size: 16px;
+    color: white;
+}
