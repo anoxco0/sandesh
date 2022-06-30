@@ -2,40 +2,104 @@ import "./login.css";
 import { 
   // useEffect,
    useState } from "react";
-import { useSelector, 
-  // useDispatch 
-} from "react-redux";
-import {Link, 
-  // useNavigate
-} from "react-router-dom";
-import {
-  signInWithEmailAndPassword,
-  // onAuthStateChanged,
-} from "firebase/auth";
+import { useSelector,
+  //  useDispatch
+   } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword, 
+  // onAuthStateChanged
+ } from "firebase/auth";
 import { auth } from "../firebase-config";
 // import { isAuth, userName } from "../../../redux/Authentication/action";
 
 export const Login = () => {
+  // const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [passVisibility, setPassVisibility] = useState("password");
+  const [invalid, setInvalid] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const [user, setUser] = useState("");
   const { theme } = useSelector((store) => store.settingReducer);
 
   const login = async (e) => {
     e.preventDefault();
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
+      console.log(user.user.email);
+      if (user.user.email) {
+        setInvalid(false);
+        navigate("/");
+      }
     } catch (error) {
+      setInvalid(true);
       console.log(error.messege);
     }
   };
+
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (currentUser) => {
+  //     setUser(currentUser);
+  //   });
+    // console.log(user)
+    // if(user?.email){
+    //   dispatch(userName(user.email));
+    //   dispatch(isAuth(true))
+    //   dispatch(isAuth(true));
+    //   navigate("/")
+    // }
+  // }, [dispatch, navigate, user]);
+
   return (
     <div className="login" style={{ backgroundColor: theme[1] }}>
       <form onSubmit={(e) => login(e)}>
         <h1>Login here</h1>
+        {invalid ? (
+          <div style={{ color: "red", display:'flex', alignItems:"center", gap:"10px" }}>
+            {" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              id="Capa_1"
+              x="0px"
+              y="0px"
+              viewBox="0 0 27.963 27.963"
+              style={{enableBackground:"new 0 0 27.963 27.963", width:"14px"}}
+              fill="red"
+            >
+              <g>
+                <g id="c129_exclamation">
+                  <path d="M13.983,0C6.261,0,0.001,6.259,0.001,13.979c0,7.724,6.26,13.984,13.982,13.984s13.98-6.261,13.98-13.984    C27.963,6.259,21.705,0,13.983,0z M13.983,26.531c-6.933,0-12.55-5.62-12.55-12.553c0-6.93,5.617-12.548,12.55-12.548    c6.931,0,12.549,5.618,12.549,12.548C26.531,20.911,20.913,26.531,13.983,26.531z" />
+                  <polygon points="15.579,17.158 16.191,4.579 11.804,4.579 12.414,17.158   " />
+                  <path d="M13.998,18.546c-1.471,0-2.5,1.029-2.5,2.526c0,1.443,0.999,2.528,2.444,2.528h0.056c1.499,0,2.469-1.085,2.469-2.528    C16.441,19.575,15.468,18.546,13.998,18.546z" />
+                </g>
+                <g id="Capa_1_207_"></g>
+              </g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+            </svg>
+            {" "}
+            <p> invalid email or Password</p>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="login_email">
           <input
+            autoComplete="off"
             required
             id="login_email"
             type="email"
@@ -45,6 +109,7 @@ export const Login = () => {
         </div>
         <div className="login_password">
           <input
+          autoComplete="off"
             required
             type={passVisibility}
             name=""
@@ -108,7 +173,9 @@ export const Login = () => {
         <div className="login_submit">
           <input id="login_submit" type="submit" placeholder="Submit" />
         </div>
-        <p>No account, <Link to={"/register"}>click here</Link></p>
+        <p>
+          No account, <Link to={"/register"}>click here</Link>
+        </p>
       </form>
     </div>
   );

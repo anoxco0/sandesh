@@ -17,7 +17,7 @@ export const Navbar = () => {
           x="0px"
           y="0px"
           viewBox="0 0 122.88 122.88"
-          style={{"enable-background":"new 0 0 122.88 122.88"}}
+          style={{enableBackground:"new 0 0 122.88 122.88"}}
           fill="hsl(200, 19%, 38%)"
         >
           <g>
@@ -35,12 +35,12 @@ export const Navbar = () => {
             ></path>
           </svg>
         </IconButton>
-        <IconButton>
+        <IconButton onClick={() => setNav(!nav)}>
           <svg
             viewBox="0 0 24 24"
             width="30px"
             className=""
-            onClick={() => setNav(!nav)}
+            
           >
             <title>Menu</title>
             <path
