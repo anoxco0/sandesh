@@ -1,4 +1,4 @@
-import { AUTHENTICATION, authentication, AUTHENTICATION_LOADING, IS_AUTHENTICATED, USER_NAME } from "./action"
+import { AUTHENTICATION, AUTHENTICATION_LOADING, IS_AUTHENTICATED, USER_NAME } from "./action"
 
 
 const init = {

@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import "./messegebody.css";
 import imgback from "./messege_background.png";
 import 'firebase/auth';
 import 'firebase/firestore';
 
 export const MessegeBody = () => {
-  const [messege, setMessege] = useState([]);
+//   const [messege, setMessege] = useState([]);
 
   return (
     <div
