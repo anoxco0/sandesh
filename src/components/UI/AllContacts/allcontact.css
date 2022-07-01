@@ -1,4 +1,12 @@
 .allcontact{
     width: 100%;
     height: calc(100vh - 128px);
+    overflow-y: scroll;
+}
+.all_contact{
+    width: calc(100% - 30px);
+    display: flex;
+    color: white;
+    align-items: center;
+    padding: 0px 0px 0px 30px;
 }

@@ -1,17 +1,11 @@
 import "./login.css";
-import { 
-  // useEffect,
-   useState } from "react";
-import { useSelector,
-   useDispatch
-   } from "react-redux";
+import { useState } from "react";
+import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Authentication } from "../../../redux/Authentication/action";
-import { signInWithEmailAndPassword, 
-  // onAuthStateChanged
- } from "firebase/auth";
-import { Auth } from "../firebase-config";
-// import { isAuth, userName } from "../../../redux/Authentication/action";
+import { signInWithEmailAndPassword, } from "firebase/auth";
+import { Auth,db } from "../firebase-config";
+import { updateDoc, doc } from "firebase/firestore";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -20,7 +14,6 @@ export const Login = () => {
   const [invalid, setInvalid] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [user, setUser] = useState("");
   const { theme } = useSelector((store) => store.settingReducer);
 
   const login = async (e) => {
@@ -30,6 +23,9 @@ export const Login = () => {
       console.log(user.user.email);
       if (user.user.email) {
         setInvalid(false);
+        await updateDoc(doc(db, 'sandesh', Auth.currentUser.uid),{
+          isOnline:true
+        })
         navigate("/");
       }
     } catch (error) {
@@ -37,19 +33,6 @@ export const Login = () => {
       console.log(error.messege);
     }
   };
-
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (currentUser) => {
-  //     setUser(currentUser);
-  //   });
-    // console.log(user)
-    // if(user?.email){
-    //   dispatch(userName(user.email));
-    //   dispatch(isAuth(true))
-    //   dispatch(isAuth(true));
-    //   navigate("/")
-    // }
-  // }, [dispatch, navigate, user]);
 
   return (
     <div className="login" style={{ backgroundColor: theme[1] }}>
