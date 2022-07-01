@@ -3,6 +3,7 @@
 export const AUTHENTICATION_LOADING="AUTHENTICATION_LOADING";
 export const IS_AUTHENTICATED = "IS_AUTHENTICATED";
 export const USER_NAME = "USER_NAME";
+export const AUTHENTICATION = "AUTHENTICATION"
 
 export const auth_loading = ()=>({
     type:AUTHENTICATION_LOADING,
@@ -17,7 +18,10 @@ export const userName = (payload) =>({
     type:USER_NAME,
     payload
 })
-
+export const Authentication = (payload) =>({
+    type:AUTHENTICATION,
+    payload
+})
 // export const authentication = (auth) => (dispatch) =>{
 //     dispatch(auth_loading());
 //     let user;

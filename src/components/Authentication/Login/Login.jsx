@@ -3,17 +3,18 @@ import {
   // useEffect,
    useState } from "react";
 import { useSelector,
-  //  useDispatch
+   useDispatch
    } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Authentication } from "../../../redux/Authentication/action";
 import { signInWithEmailAndPassword, 
   // onAuthStateChanged
  } from "firebase/auth";
-import { auth } from "../firebase-config";
+import { Auth } from "../firebase-config";
 // import { isAuth, userName } from "../../../redux/Authentication/action";
 
 export const Login = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [passVisibility, setPassVisibility] = useState("password");
   const [invalid, setInvalid] = useState(false);
@@ -25,7 +26,7 @@ export const Login = () => {
   const login = async (e) => {
     e.preventDefault();
     try {
-      const user = await signInWithEmailAndPassword(auth, email, password);
+      const user = await signInWithEmailAndPassword(Auth, email, password);
       console.log(user.user.email);
       if (user.user.email) {
         setInvalid(false);
@@ -173,9 +174,7 @@ export const Login = () => {
         <div className="login_submit">
           <input id="login_submit" type="submit" placeholder="Submit" />
         </div>
-        <p>
-          No account, <Link to={"/register"}>click here</Link>
-        </p>
+        <div style={{display:"flex"}}>No account, <span style={{color:"blue", cursor:"pointer"}} onClick={()=>dispatch(Authentication("register"))}> {" "} click here</span> </div>
       </form>
     </div>
   );

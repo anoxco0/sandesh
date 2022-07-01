@@ -1,18 +1,19 @@
 import { 
   // useEffect,
    useState } from "react";
-import { useSelector } from "react-redux";
-import {Link} from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
+// import {Link} from "react-router-dom"
 import {
   createUserWithEmailAndPassword,
   // onAuthStateChanged,
 } from "firebase/auth";
-import { auth } from "../firebase-config";
+import { Auth } from "../firebase-config";
 import "./register.css";
+import { Authentication } from "../../../redux/Authentication/action";
 // import { isAuth, userName } from "../../../redux/Authentication/action";
 
 export const Register = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const navigate = useNavigate();
   const [passVisibility, setPassVisibility] = useState("password");
   const [email, setEmail] = useState("");
@@ -23,7 +24,7 @@ export const Register = () => {
   const register = async (e) => {
       e.preventDefault();
       try {
-          const user = await createUserWithEmailAndPassword(auth, email, password);
+          const user = await createUserWithEmailAndPassword(Auth, email, password);
           console.log(user);
         } catch (error) {
             console.log(error.messege);
@@ -102,7 +103,7 @@ export const Register = () => {
         <div className="reg_submit">
           <input id="reg_submit" type="submit" placeholder="Submit" />
         </div>
-        <p>already have an account, <Link to={"/login"}>click here</Link> </p>
+        <div style={{display:"flex"}}>already have an account, <span style={{color:"blue", cursor:"pointer"}} onClick={()=>dispatch(Authentication("login"))}> {" "} click here</span> </div>
       </form>
     </div>
   );

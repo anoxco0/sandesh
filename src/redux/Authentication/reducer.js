@@ -1,10 +1,11 @@
-import { AUTHENTICATION_LOADING, IS_AUTHENTICATED, USER_NAME } from "./action"
+import { AUTHENTICATION, authentication, AUTHENTICATION_LOADING, IS_AUTHENTICATED, USER_NAME } from "./action"
 
 
 const init = {
     authLoading : false,
    isAuthenticated : false,
    username:"",
+   authentication:"login"
 }
 
 export const authReducer = (store=init, {type, payload}) =>{
@@ -24,6 +25,11 @@ export const authReducer = (store=init, {type, payload}) =>{
                 ...store,
                 username:payload,
                 authLoading:false
+            }
+        case AUTHENTICATION:
+            return {
+                ...store,
+                authentication:payload
             }
         default :
         return store

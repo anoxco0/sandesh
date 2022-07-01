@@ -6,7 +6,7 @@ import "./App.css";
 import { Loading } from "./components/Loading/Loading";
 import { isAuth, userName } from "./redux/Authentication/action";
 import { Router } from "./Router";
-import { auth } from "./components/Authentication/firebase-config";
+import { Auth } from "./components/Authentication/firebase-config";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,18 +14,16 @@ function App() {
   const [isLoding, setIsLoding] = useState(true);
   const [user, setUser] = useState("");
   useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
+    onAuthStateChanged(Auth, (currentUser) => {
       setUser(currentUser);
     });
     if(user?.email){
       dispatch(userName(user.email));
       dispatch(isAuth(true))
       dispatch(isAuth(true));
-      navigate("/")
+      navigate('/')
     }
-    else{
-      navigate("/login")
-    }
+    else navigate('/authentication')
   }, [dispatch, navigate, user]);
   setTimeout(() => {
     setIsLoding(false);

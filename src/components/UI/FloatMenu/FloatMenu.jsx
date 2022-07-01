@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
-import { auth } from "../../Authentication/firebase-config";
+import { Auth } from "../../Authentication/firebase-config";
 import { useNavigate } from "react-router-dom";
 import "./floatmenu.css";
 import List from "@mui/material/List";
@@ -16,8 +16,8 @@ export const FloatMenu = () => {
   const { theme } = useSelector((store) => store.settingReducer);
   const navigate = useNavigate();
   const signout = async () => {
-    await signOut(auth);
-    navigate("/login");
+    await signOut(Auth);
+    navigate("/authentiacation");
   };
   return (
     <div style={{ backgroundColor: theme[0] }} className="float_menu">
