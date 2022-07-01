@@ -3,6 +3,7 @@ import "./messegebody.css";
 import imgback from "./messege_background.png";
 import 'firebase/auth';
 import 'firebase/firestore';
+// import { useEffect, useState } from "react";
 
 export const MessegeBody = () => {
 //   const [messege, setMessege] = useState([]);
