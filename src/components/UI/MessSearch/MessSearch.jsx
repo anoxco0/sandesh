@@ -1,8 +1,21 @@
 import "./messsearch.css";
 import { IconButton } from "@mui/material";
 import { useSelector } from "react-redux";
+import { Auth,db } from "../../Authentication/firebase-config";
+import { updateDoc, doc } from "firebase/firestore";
+
 export const MessSearch = () => {
   const { theme } = useSelector((store) => store.settingReducer);
+  async function focus () {
+      await updateDoc(doc(db, "sandesh", Auth.currentUser.uid),{
+        typing:true
+      })
+  }
+  async function blur () {
+    await updateDoc(doc(db, "sandesh", Auth.currentUser.uid),{
+      typing:false
+    })
+  }
   return (
     <div className="mess_search" style={{ backgroundColor: theme[0] }}>
       <IconButton>
@@ -25,7 +38,7 @@ export const MessSearch = () => {
           ></path>
         </svg>
       </IconButton>
-      <input type="text" name="" id="" placeholder="Type a messege..." />
+      <input type="text" name="" id="" placeholder="Type a messege..." onFocus={focus} onBlur={blur} />
       <IconButton style={{marginLeft:"20px"}}>
         <svg viewBox="0 0 24 24" width="40px" className="" >
           <path

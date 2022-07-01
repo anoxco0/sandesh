@@ -35,6 +35,7 @@ export const Register = () => {
         email,
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
+        typing:false,
       });
     } catch (error) {
       console.log(error.messege);
