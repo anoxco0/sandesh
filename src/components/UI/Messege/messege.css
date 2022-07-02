@@ -1,14 +1,21 @@
-.messege{
-    width: 70%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 .messeges{
     width: 70%;
     height: 100vh;
     display: flex;
     flex-direction: column;
+}
+@media only screen and (max-width:1050px){
+    .messeges{
+        width: 60%;
+    }
+}
+@media only screen and (max-width:800px){
+    .messeges{
+        width: 55%;
+    }
+}
+@media only screen and (max-width:755px){
+    .messeges{
+        width: 100%;
+    }
 }

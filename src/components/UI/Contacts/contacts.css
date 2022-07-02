@@ -3,3 +3,19 @@
     height: 100vh;
     border-right: 1px solid #2d3940;
 }
+
+@media only screen and (max-width:1050px){
+    .contacts{
+        width: 40%;
+    }
+}
+@media only screen and (max-width:800px){
+    .contacts{
+        width: 45%;
+    }
+}
+@media only screen and (max-width:755px){
+    .contacts{
+        display: none;
+    }
+}

@@ -50,7 +50,7 @@ export const AllContacts = () => {
               <div style={{ fontSize: "20px" }}>{el.name}</div>
               <div style={{display:"flex",marginLeft:"5px"}}>{el.isOnline ? <div style={{color:'white'}}>online</div> : <div style={{color:"gray"}}>offline</div>}</div>
             </div>
-            <div>{el.typing ? <div>typing...</div> : ""}</div>
+            <div>{el.typing ? <div style={{fontSize:"14px"}}>typing...</div> : ""}</div>
           </div>
         </div>
       ))}

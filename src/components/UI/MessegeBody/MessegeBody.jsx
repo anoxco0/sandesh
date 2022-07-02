@@ -5,12 +5,9 @@ import "firebase/auth";
 import "firebase/firestore";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { Auth, db } from "../../Authentication/firebase-config";
-// import { useSelector } from "react-redux";
-// import { useEffect, useState } from "react";
 
 export const MessegeBody = () => {
   const [messege, setMessege] = useState([]);
-  // const theme = useSelector((store) => store.settingReducer);
   useEffect(() => {
     const msgsRef = collection(db, "messeges");
     const q = query(msgsRef, orderBy("createdAt", "asc"));
@@ -24,7 +21,7 @@ export const MessegeBody = () => {
     });
   }, []);
 
-  return (
+  return ( 
     <div style={{ position: "relative" }}>
       <div
         className="messege_body"
@@ -40,8 +37,8 @@ export const MessegeBody = () => {
         {messege.map((el, i) => (
           <div key={i} style={{ display: "flex", width: "100%" }}>
             <div
+              className="messege_div"
               style={{
-                padding: "10px 30px",
                 borderRadius: el.user===Auth.currentUser.email?"10px 0 10px 10px":"0 10px 10px 10px",
                 marginLeft: el.user === Auth.currentUser.email ? "auto" : "10%",
                 backgroundColor:

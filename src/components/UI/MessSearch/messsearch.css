@@ -17,3 +17,35 @@
     font-size: 16px;
     color: white;
 }
+.mess_search svg{
+    width: 30px;
+}
+.iconSvg{
+    margin-left: 20px;
+}
+.inputSvg1{
+    margin:0 20px;
+}
+@media only screen and (max-width:800px){
+    .mess_search{
+        padding: 4px 7px;
+        height: 50px;
+    }
+    .mess_search>input{
+        height: 40px;
+        padding: 0 5px;
+    }
+    
+}
+
+@media only screen and (max-width:420px){
+    .mess_search svg{
+        width: 24px;
+    }
+    .iconSvg{
+        margin-left: 10px;
+    }
+    .inputSvg1{
+        margin:0 5px;
+    }
+}
