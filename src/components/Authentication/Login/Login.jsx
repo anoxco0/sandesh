@@ -20,7 +20,6 @@ export const Login = () => {
     e.preventDefault();
     try {
       const user = await signInWithEmailAndPassword(Auth, email, password);
-      console.log(user.user.email);
       if (user.user.email) {
         setInvalid(false);
         await updateDoc(doc(db, 'sandesh', Auth.currentUser.uid),{

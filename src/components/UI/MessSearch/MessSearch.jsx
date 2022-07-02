@@ -2,13 +2,14 @@ import "./messsearch.css";
 import { IconButton } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Auth, db } from "../../Authentication/firebase-config";
-import { updateDoc, doc, collection, addDoc, getFirestore, serverTimestamp} from "firebase/firestore";
+import { updateDoc, doc, collection, addDoc, getFirestore, Timestamp} from "firebase/firestore";
 import {  useState } from "react";
 
 export const MessSearch = () => {
   const { theme } = useSelector((store) => store.settingReducer);
   const [Typing, setTyping] = useState(false);
-  // const [allMesseged, setAllmesseged] = useState([])
+  const {username}=useSelector(store=>store.authReducer);
+  console.log(username)
   const [messege, setMessege] = useState("");
   async function focus() {
     setTyping(true);
@@ -29,13 +30,11 @@ export const MessSearch = () => {
   // console.log(Auth.currentUser)
   const handleKeyDown =async(e)=>{
      if(e.key==="Enter"&&messege){
-       let user = [];
-      console.log(user)
       await addDoc(collection(getFirestore(), "messeges"),{
-        name:"",
+        name:username,
         user:Auth.currentUser.email,
         text:messege,
-        createdAt:serverTimestamp(),
+        createdAt:Timestamp.fromDate(new Date()),
       })
       e.target.value="";
     }

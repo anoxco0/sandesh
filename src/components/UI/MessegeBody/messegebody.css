@@ -1,6 +1,7 @@
 .messege_body{
     width: 100%;
     flex-grow: 1;
+    display: block;
 }
 .messegeBody{
     width: 100%;
