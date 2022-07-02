@@ -1,27 +1,17 @@
-import {
-  // useEffect,
-  useState,
-} from "react";
+import {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import {Link} from "react-router-dom"
-import {
-  createUserWithEmailAndPassword,
-  // onAuthStateChanged,
-} from "firebase/auth";
+import {createUserWithEmailAndPassword} from "firebase/auth";
 import { Auth, db } from "../firebase-config";
 import "./register.css";
 import { Authentication } from "../../../redux/Authentication/action";
 import { doc, setDoc, Timestamp } from "firebase/firestore";
-// import { isAuth, userName } from "../../../redux/Authentication/action";
 
 export const Register = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
   const [passVisibility, setPassVisibility] = useState("password");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [user, setUser] = useState("");
   const { theme } = useSelector((store) => store.settingReducer);
 
   const register = async (e) => {

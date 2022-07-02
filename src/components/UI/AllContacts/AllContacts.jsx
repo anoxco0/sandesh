@@ -15,7 +15,7 @@ export const AllContacts = () => {
       const unsub = onSnapshot(q, (querySnapshot) => {
         let user = [];
         querySnapshot.forEach((doc) => {
-          if(doc.data().isOnline)user.push(doc.data());
+          user.push(doc.data());
         });
         setUsers(user);
       });
@@ -46,12 +46,11 @@ export const AllContacts = () => {
               justifyContent: "space-between",
             }}
           >
-            <div style={{ fontSize: "20px" }}>{el.name}</div>
             <div>
-              {el.typing ? (
-                <div>typing...</div>
-              ) : ""}
+              <div style={{ fontSize: "20px" }}>{el.name}</div>
+              <div style={{display:"flex",marginLeft:"5px"}}>{el.isOnline ? <div style={{color:'white'}}>online</div> : <div style={{color:"gray"}}>offline</div>}</div>
             </div>
+            <div>{el.typing ? <div>typing...</div> : ""}</div>
           </div>
         </div>
       ))}
