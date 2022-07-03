@@ -62,7 +62,7 @@ export const Login = () => {
         </div>
         <div className="login_password">
           <input
-          autoComplete="off"
+          autoComplete="on"
             required
             type={passVisibility}
             name=""

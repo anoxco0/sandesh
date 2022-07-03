@@ -7,25 +7,20 @@ import { User } from "../../svg/User";
 import { Camera } from "../../svg/Camera";
 import "./Profile.css";
 import { useEffect, useState } from "react";
-import { ref, getDownloadURL, uploadBytes, deleteObject } from "firebase/storage";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { Auth, db, storage } from "../../Authentication/firebase-config";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 
 
 export const Profile = () => {
   const [image, setImage] = useState("");
-  const [user, setUser] = useState()
+  // const [user, setUser] = useState()
   const { theme } = useSelector((store) => store.settingReducer);
   const { username } = useSelector((store) => store.authReducer);
   const { name, avtar } = useSelector((store) => store.contactsReducer);
   const dispatch = useDispatch();
   
   useEffect(()=>{
-    getDoc(doc(db, "users", Auth.currentUser.uid)).then((docSnap) => {
-      if (docSnap.exists) {
-        setUser(docSnap.data());
-      }
-    });
     if (image) {
       const uploadImg = async () => {
         const imgRef = ref(
@@ -33,9 +28,6 @@ export const Profile = () => {
           `avatar/${new Date().getTime()} - ${image.name}`
         );
         try {
-          if (user.avatarPath) {
-            await deleteObject(ref(storage, user.avatarPath));
-          }
           const snap = await uploadBytes(imgRef, image);
           const url = await getDownloadURL(ref(storage, snap.ref.fullPath));
 
@@ -51,7 +43,7 @@ export const Profile = () => {
       };
       uploadImg();
     }
-  },[image, user])
+  },[image])
   return (
     <div className="profile">
       <div style={{ width: "100%", height: "40vh", backgroundColor: theme[0] }}>
