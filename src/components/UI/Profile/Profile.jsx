@@ -4,14 +4,15 @@ import { Back } from "../../svg/Back";
 import { Call } from "../../svg/Call";
 import { ProfilePic } from "../../svg/ProfilePic";
 import { User } from "../../svg/User";
+import { Camera } from "../../svg/Camera";
 import "./Profile.css";
 
 export const Profile = () => {
   const { theme } = useSelector((store) => store.settingReducer);
   const { username } = useSelector((store) => store.authReducer);
-  const {name} = useSelector(store=>store.contactsReducer)
+  const { name } = useSelector((store) => store.contactsReducer);
   const dispatch = useDispatch();
-  console.log('name',name);
+  console.log("name", name);
 
   return (
     <div className="profile">
@@ -26,31 +27,75 @@ export const Profile = () => {
           }}
         >
           <div onClick={() => dispatch(profileSlide(false))}>
-           <Back/>
+            <Back />
           </div>
           <div style={{ fontSize: "28px", fontWeight: "600", color: "white" }}>
             Profile
           </div>
         </div>
       </div>
-      <div style={{position:'absolute', width:"100%"}}>
-        <div style={{width:"200px", border:`10px solid ${theme[1]}`, margin:"auto", height:"200px", marginTop:"-120px", borderRadius:"50%"}}>
-            <ProfilePic/>
-            {/* <img src="" alt="" /> */}
+      <div style={{ position: "absolute", width: "100%" }}>
+        <div
+          className="img_container"
+          style={{
+            width: "200px",
+            border: `10px solid ${theme[1]}`,
+            margin: "auto",
+            height: "200px",
+            marginTop: "-120px",
+            borderRadius: "50%",
+          }}
+        >
+          <div className="image">
+            <ProfilePic />
+          </div>
+          <div className="overlay">
+            <div>
+              <label htmlFor="photo">
+                <Camera />
+              </label>
+              <input
+                type="file"
+                name=""
+                id="photo"
+                accept="image/*"
+                style={{ display: "none" }}
+              />
+            </div>
+          </div>
+          {/* <img src="" alt="" /> */}
         </div>
       </div>
       <div style={{ backgroundColor: theme[1], height: "60vh" }}>
-        <div style={{ width: "100%", display: "flex", gap: "40px", padding:"20vh 30px 5vh" }}>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            gap: "40px",
+            padding: "20vh 30px 5vh",
+          }}
+        >
           <div>
-            <User/>
+            <User />
           </div>
-          <div style={{color:"rgba(255, 255, 255, 0.6)", fontSize:"18px"}}>{name}</div>
+          <div style={{ color: "rgba(255, 255, 255, 0.6)", fontSize: "18px" }}>
+            {name}
+          </div>
         </div>
-        <div style={{ width: "100%", display: "flex", gap: "40px", padding:"0 30px" }}>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            gap: "40px",
+            padding: "0 30px",
+          }}
+        >
           <div>
-            <Call/>
+            <Call />
           </div>
-          <div style={{fontSize:"18px", color:"rgba(255, 255, 255, 0.6)"}}>{username}</div>
+          <div style={{ fontSize: "18px", color: "rgba(255, 255, 255, 0.6)" }}>
+            {username}
+          </div>
         </div>
       </div>
     </div>

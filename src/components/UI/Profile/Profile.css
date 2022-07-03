@@ -4,7 +4,24 @@
     border-right: 1px solid #2d3940;
     position: relative;
 }
+.img_container{
+    position: relative;
+}
+.img_container:hover .image{
+    opacity: 0.4;
+}
+/* .img_container:hover .overlay{
+    opacity: 1;
+} */
 
+.overlay{
+    /* transition: 0.5s ease; */
+    opacity: 1;
+    position: absolute;
+    /* transform: translate(-50%, -50%); */
+    text-align: center;
+
+}
 @media only screen and (max-width:1050px) {
     .profile{
         width: 40%;
