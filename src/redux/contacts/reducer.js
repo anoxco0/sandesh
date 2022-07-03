@@ -1,8 +1,9 @@
-import { NAME, PROFILE_SLIDE } from "./action"
+import { AVTAR, NAME, PROFILE_SLIDE } from "./action"
 
 const init ={
     name:"",
-    profileslide:false
+    profileslide:false,
+    avtar:"",
 }
 
 export const contactsReducer = (store=init, {type, payload})=>{
@@ -16,6 +17,11 @@ export const contactsReducer = (store=init, {type, payload})=>{
             return {
                 ...store,
                 name:payload
+            }
+        case AVTAR:
+            return {
+                ...store,
+                avtar:payload
             }
         default:
             return store

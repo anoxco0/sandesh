@@ -21,7 +21,7 @@ export const MessegeBody = () => {
     });
   }, []);
 
-  return ( 
+  return (
     <div style={{ position: "relative" }}>
       <div
         className="messege_body"
@@ -30,7 +30,7 @@ export const MessegeBody = () => {
           opacity: "0.07",
           position: "absolute",
           width: "100%",
-          height: "calc(100vh - 155px)", 
+          height: "calc(100vh - 155px)",
         }}
       ></div>
       <div className="messegeBody">
@@ -39,24 +39,27 @@ export const MessegeBody = () => {
             <div
               className="messege_div"
               style={{
-                borderRadius: el.user===Auth.currentUser.email?"10px 0 10px 10px":"0 10px 10px 10px",
+                borderRadius:
+                  el.user === Auth.currentUser.email
+                    ? "10px 0 10px 10px"
+                    : "0 10px 10px 10px",
                 marginLeft: el.user === Auth.currentUser.email ? "auto" : "10%",
                 backgroundColor:
-                el.user === Auth.currentUser.email ? "#377D71" : "#2a3942",
+                  el.user === Auth.currentUser.email ? "#377D71" : "#2a3942",
                 marginRight:
-                el.user === Auth.currentUser.email ? "10%" : "auto",
-                marginTop:"20px"
+                  el.user === Auth.currentUser.email ? "10%" : "auto",
+                marginTop: "20px",
               }}
-              >
+            >
               {el.user === Auth.currentUser.email ? (
                 ""
-                ) : (
-                  <div style={{ display: "flex", gap: "40px" }}>
+              ) : (
+                <div style={{ display: "flex", gap: "40px" }}>
                   <div style={{ color: "#FBB454" }}>{el.user}</div>
                   <div>{el.name}</div>
                 </div>
               )}
-              <div style={{ color: "white", fontSize:"20px" }}>{el.text}</div>
+              <div style={{ color: "white", fontSize: "20px" }}>{el.text}</div>
             </div>
           </div>
         ))}

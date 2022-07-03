@@ -11,7 +11,7 @@ import { Send } from "../../svg/Send";
 export const MessSearch = () => {
   const { theme } = useSelector((store) => store.settingReducer);
   const {username}=useSelector(store=>store.authReducer);
-  console.log(username)
+  // console.log(username)
   const [messege, setMessege] = useState("");
   async function focus() {
     await updateDoc(doc(db, "sandesh", Auth.currentUser.uid), {

@@ -12,10 +12,11 @@ export const Navbar = () => {
   const dispatch = useDispatch()
   const [nav, setNav] = useState(false);
   const { theme } = useSelector((store) => store.settingReducer);
+  const {avtar} = useSelector((store)=>store.contactsReducer);
   return (
     <div className="con_nav" style={{ background: theme[0] }}>
       <div className="profile_pic" onClick={()=>dispatch(profileSlide(true))}>
-        <ProfilePic/>
+        {avtar?<img src={avtar} alt="" style={{borderRadius:"50%", width:'40px'}} />:<ProfilePic/>}
       </div>
       <div className="con_nav_icons">
         <IconButton aria-label="delete">

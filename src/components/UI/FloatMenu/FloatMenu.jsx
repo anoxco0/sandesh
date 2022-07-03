@@ -1,5 +1,5 @@
 import { signOut } from "firebase/auth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Auth, db } from "../../Authentication/firebase-config";
 import { useNavigate } from "react-router-dom";
 import "./floatmenu.css";
@@ -7,6 +7,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { updateDoc, doc } from "firebase/firestore";
+import { profileSlide } from "../../../redux/contacts/action";
 
 const style = {
   width: "100%",
@@ -15,6 +16,7 @@ const style = {
 
 export const FloatMenu = () => {
   const { theme } = useSelector((store) => store.settingReducer);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const signout = async () => {
     await updateDoc(doc(db, 'sandesh', Auth.currentUser.uid),{
@@ -29,17 +31,8 @@ export const FloatMenu = () => {
         <ListItem button>
           <ListItemText primary="New group" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={()=>dispatch(profileSlide(true))}>
           <ListItemText primary="Profile" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Catalog" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Starred messeges" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Labels" />
         </ListItem>
         <ListItem button>
           <ListItemText primary="Settings" />

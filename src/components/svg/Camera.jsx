@@ -3,9 +3,9 @@ export const Camera = () => {
     <div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5"
+        style={{width:"50px"}}
         viewBox="0 0 20 20"
-        fill="currentColor"
+        fill="rgba(255, 255, 255, 0.6)"
       >
         <path
           fillRule="evenodd"

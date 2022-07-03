@@ -1,7 +1,7 @@
 import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Name } from "../../../redux/contacts/action";
+import { Avtar, Name } from "../../../redux/contacts/action";
 import { db, Auth } from "../../Authentication/firebase-config";
 import { ProfilePic } from "../../svg/ProfilePic";
 import "./allcontact.css";
@@ -18,7 +18,10 @@ export const AllContacts = () => {
       const unsub = onSnapshot(q, (querySnapshot) => {
         let user = [];
         querySnapshot.forEach((doc) => {
-          if(doc.data().uid===Auth.currentUser.uid) dispatch(Name(doc.data().name))
+          if(doc.data().uid===Auth.currentUser.uid) {
+            dispatch(Name(doc.data().name));
+            dispatch(Avtar(doc.data().avatar))
+          }
           else user.push(doc.data());
         });
         setUsers(user);
@@ -26,8 +29,6 @@ export const AllContacts = () => {
       return () => unsub();
     }
   }, [dispatch, user1]);
-  console.log(users);
-
   return (
     <div className="allcontact" style={{ backgroundColor: theme[1] }}>
       {users.map((el) => (
@@ -41,7 +42,7 @@ export const AllContacts = () => {
               marginRight: "20px",
             }}
           >
-            <ProfilePic/>
+            {el.avatar?<img src={el.avatar} style={{width:"50px"}} alt="" />:<ProfilePic/>}
           </div>
           <div
             style={{

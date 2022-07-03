@@ -6,14 +6,52 @@ import { ProfilePic } from "../../svg/ProfilePic";
 import { User } from "../../svg/User";
 import { Camera } from "../../svg/Camera";
 import "./Profile.css";
+import { useEffect, useState } from "react";
+import { ref, getDownloadURL, uploadBytes, deleteObject } from "firebase/storage";
+import { Auth, db, storage } from "../../Authentication/firebase-config";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+
 
 export const Profile = () => {
+  const [image, setImage] = useState("");
+  const [user, setUser] = useState()
   const { theme } = useSelector((store) => store.settingReducer);
   const { username } = useSelector((store) => store.authReducer);
-  const { name } = useSelector((store) => store.contactsReducer);
+  const { name, avtar } = useSelector((store) => store.contactsReducer);
   const dispatch = useDispatch();
-  console.log("name", name);
+  
+  useEffect(()=>{
+    getDoc(doc(db, "users", Auth.currentUser.uid)).then((docSnap) => {
+      if (docSnap.exists) {
+        setUser(docSnap.data());
+      }
+    });
+    if (image) {
+      const uploadImg = async () => {
+        const imgRef = ref(
+          storage,
+          `avatar/${new Date().getTime()} - ${image.name}`
+        );
+        try {
+          if (user.avatarPath) {
+            await deleteObject(ref(storage, user.avatarPath));
+          }
+          const snap = await uploadBytes(imgRef, image);
+          const url = await getDownloadURL(ref(storage, snap.ref.fullPath));
 
+          await updateDoc(doc(db, "sandesh", Auth.currentUser.uid), {
+            avatar: url,
+            avatarPath: snap.ref.fullPath,
+          });
+
+          setImage("");
+        } catch (err) {
+          console.log(err.message);
+        }
+      };
+      uploadImg();
+    }
+  },[image, user])
   return (
     <div className="profile">
       <div style={{ width: "100%", height: "40vh", backgroundColor: theme[0] }}>
@@ -47,12 +85,14 @@ export const Profile = () => {
           }}
         >
           <div className="image">
-            <ProfilePic />
+            {avtar?<img src={avtar} alt="" style={{width:"200px", borderRadius:"50%"}} />:<ProfilePic />}
           </div>
           <div className="overlay">
             <div>
-              <label htmlFor="photo">
+              <label htmlFor="photo" style={{width:"100%", height:"100%", color:"white", cursor:"pointer"}}>
                 <Camera />
+                <div>Change</div>
+                <div>Profile Pic</div>
               </label>
               <input
                 type="file"
@@ -60,6 +100,7 @@ export const Profile = () => {
                 id="photo"
                 accept="image/*"
                 style={{ display: "none" }}
+                onChange = {(e)=>setImage(e.target.files[0])}
               />
             </div>
           </div>
