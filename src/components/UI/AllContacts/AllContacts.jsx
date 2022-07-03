@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Name } from "../../../redux/contacts/action";
 import { db, Auth } from "../../Authentication/firebase-config";
+import { ProfilePic } from "../../svg/ProfilePic";
 import "./allcontact.css";
 
 export const AllContacts = () => {
@@ -39,7 +40,9 @@ export const AllContacts = () => {
               borderRadius: "50%",
               marginRight: "20px",
             }}
-          ></div>
+          >
+            <ProfilePic/>
+          </div>
           <div
             style={{
               borderBottom: "1px solid #2d3940",
