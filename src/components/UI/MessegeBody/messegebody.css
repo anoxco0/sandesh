@@ -4,10 +4,11 @@
     display: block;
 }
 .messegeBody{
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+    width: 70%;
+    height: calc(100vh - 155px);
+    z-index: 98;
     overflow-y: scroll;
+    position: fixed;
 }
 ::-webkit-scrollbar{
         width: 16px;
