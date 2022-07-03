@@ -1,7 +1,7 @@
 import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Avtar, Name } from "../../../redux/contacts/action";
+import { allContacts, Avtar, Name } from "../../../redux/contacts/action";
 import { recieverUser } from "../../../redux/Messeges/action";
 import { db, Auth } from "../../Authentication/firebase-config";
 import { ProfilePic } from "../../svg/ProfilePic";
@@ -11,7 +11,7 @@ export const AllContacts = () => {
   const dispatch = useDispatch()
   const [selectUser, setSelectUser] = useState(null)
   const { theme } = useSelector((store) => store.settingReducer);
-  const [users, setUsers] = useState([]);
+  const {allcontacts} = useSelector(store=>store.contactsReducer)
   const user1 = Auth.currentUser?.uid;
   useEffect(() => {
     if (user1) {
@@ -24,16 +24,17 @@ export const AllContacts = () => {
             dispatch(Name(doc.data().name));
             dispatch(Avtar(doc.data().avatar))
           }
-          else user.push(doc.data());
+          else {
+            user.push(doc.data());}
         });
-        setUsers(user);
+        dispatch(allContacts(user));
       });
       return () => unsub();
     }
   }, [dispatch, user1]);
   return (
     <div className="allcontact" style={{ backgroundColor: theme[1] }}>
-      {users.map((el) => (
+      {allcontacts&&allcontacts.map((el) => (
         <div className="all_contact" key={el.uid} style={{backgroundColor:el.uid===selectUser?"rgba(255, 255, 255, 0.2)":""}} onClick={()=>{dispatch(recieverUser(el)); setSelectUser(el.uid)}}>
           <div
             style={{

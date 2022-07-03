@@ -70,7 +70,6 @@ export const MessSearch = () => {
   }
   const handleArrow = async()=>{
     if(messege&&reciever){
-     console.log(reciever)
       const user2 = reciever.uid;
   
       const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;

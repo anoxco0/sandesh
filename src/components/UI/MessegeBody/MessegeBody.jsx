@@ -11,7 +11,6 @@ export const MessegeBody = () => {
   const [messege, setMessege] = useState([]);
   const user1 = Auth?.currentUser?.uid;
   const {reciever} = useSelector(store=>store.messegeReducer);
-  // console.log(reciever)
   useEffect(() => {
     if(reciever){
       const user2 = reciever.uid;
@@ -40,7 +39,6 @@ export const MessegeBody = () => {
     });
   }
   }, [reciever, user1]);
-  console.log(messege)
 
   return (
     <div style={{ position: "relative" }}>
