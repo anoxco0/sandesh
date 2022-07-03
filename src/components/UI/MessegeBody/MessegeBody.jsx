@@ -30,7 +30,7 @@ export const MessegeBody = () => {
           opacity: "0.07",
           position: "absolute",
           width: "100%",
-          height: "calc(100vh - 155px)",
+          height: "calc(100vh - 155px)", 
         }}
       ></div>
       <div className="messegeBody">

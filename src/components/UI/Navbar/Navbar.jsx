@@ -1,15 +1,17 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FloatMenu } from "../FloatMenu/FloatMenu";
 import "./navbar.css";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
+import { profileSlide } from "../../../redux/contacts/action";
 
 export const Navbar = () => {
+  const dispatch = useDispatch()
   const [nav, setNav] = useState(false);
   const { theme } = useSelector((store) => store.settingReducer);
   return (
     <div className="con_nav" style={{ background: theme[0] }}>
-      <div className="profile_pic">
+      <div className="profile_pic" onClick={()=>dispatch(profileSlide(true))}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"

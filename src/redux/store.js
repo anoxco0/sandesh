@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { authReducer } from "./Authentication/reducer";
+import { contactsReducer } from "./contacts/reducer";
 import { settingReducer } from "./Setting/reducer";
 
 const composeEnhancers=
@@ -13,6 +14,7 @@ const enhancer = composeEnhancers(
 );
 
 const rootReducer = combineReducers({
+    contactsReducer:contactsReducer,
     authReducer : authReducer,
     settingReducer:settingReducer
 });

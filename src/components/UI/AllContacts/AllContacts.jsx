@@ -1,27 +1,30 @@
-import { collection, query, where, onSnapshot } from "firebase/firestore";
+import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Name } from "../../../redux/contacts/action";
 import { db, Auth } from "../../Authentication/firebase-config";
 import "./allcontact.css";
 
 export const AllContacts = () => {
+  const dispatch = useDispatch()
   const { theme } = useSelector((store) => store.settingReducer);
   const [users, setUsers] = useState([]);
   const user1 = Auth.currentUser?.uid;
   useEffect(() => {
     if (user1) {
       const usersRef = collection(db, "sandesh");
-      const q = query(usersRef, where("uid", "not-in", [user1]));
+      const q = query(usersRef, orderBy("createdAt", "asc"));
       const unsub = onSnapshot(q, (querySnapshot) => {
         let user = [];
         querySnapshot.forEach((doc) => {
-          user.push(doc.data());
+          if(doc.data().uid===Auth.currentUser.uid) dispatch(Name(doc.data().name))
+          else user.push(doc.data());
         });
         setUsers(user);
       });
       return () => unsub();
     }
-  }, [user1]);
+  }, [dispatch, user1]);
   console.log(users);
 
   return (

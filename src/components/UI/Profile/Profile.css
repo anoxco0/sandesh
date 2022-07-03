@@ -1,0 +1,24 @@
+.profile{
+    width: 30%;
+    height: 100vh;
+    border-right: 1px solid #2d3940;
+    position: relative;
+}
+
+@media only screen and (max-width:1050px) {
+    .profile{
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width:800px) {
+    .profile{
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width:755px) {
+    .profile{
+        display: none;
+    }
+}
