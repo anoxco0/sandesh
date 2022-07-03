@@ -42,7 +42,7 @@ export const AllContacts = () => {
               marginRight: "20px",
             }}
           >
-            {el.avatar?<img src={el.avatar} style={{width:"50px"}} alt="" />:<ProfilePic/>}
+            {el.avatar?<img src={el.avatar} style={{width:"50px", borderRadius:"50%"}} alt="" />:<ProfilePic/>}
           </div>
           <div
             style={{
