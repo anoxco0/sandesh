@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { profileSlide } from "../../../redux/contacts/action";
+import { Avtar, profileSlide } from "../../../redux/contacts/action";
 import { Back } from "../../svg/Back";
 import { Call } from "../../svg/Call";
 import { ProfilePic } from "../../svg/ProfilePic";
@@ -35,6 +35,7 @@ export const Profile = () => {
             avatar: url,
             avatarPath: snap.ref.fullPath,
           });
+          dispatch(Avtar(url));
 
           setImage("");
         } catch (err) {
@@ -43,7 +44,7 @@ export const Profile = () => {
       };
       uploadImg();
     }
-  },[image])
+  },[dispatch, image])
   return (
     <div className="profile">
       <div style={{ width: "100%", height: "40vh", backgroundColor: theme[0] }}>
@@ -77,7 +78,7 @@ export const Profile = () => {
           }}
         >
           <div className="image">
-            {avtar?<img src={avtar} alt="" style={{width:"200px", borderRadius:"50%"}} />:<ProfilePic />}
+            {avtar?<img src={avtar} alt="" style={{width:"200px", borderRadius:"50%", height:"200px"}} />:<ProfilePic />}
           </div>
           <div className="overlay">
             <div>

@@ -16,7 +16,7 @@ export const Navbar = () => {
   return (
     <div className="con_nav" style={{ background: theme[0] }}>
       <div className="profile_pic" onClick={()=>dispatch(profileSlide(true))}>
-        {avtar?<img src={avtar} alt="" style={{borderRadius:"50%", width:'40px'}} />:<ProfilePic/>}
+        {avtar?<img src={avtar} alt="" style={{borderRadius:"50%", width:'40px', height:"40px"}} />:<ProfilePic/>}
       </div>
       <div className="con_nav_icons">
         <IconButton aria-label="delete">

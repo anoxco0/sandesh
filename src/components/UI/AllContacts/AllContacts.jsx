@@ -2,12 +2,14 @@ import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Avtar, Name } from "../../../redux/contacts/action";
+import { recieverUser } from "../../../redux/Messeges/action";
 import { db, Auth } from "../../Authentication/firebase-config";
 import { ProfilePic } from "../../svg/ProfilePic";
 import "./allcontact.css";
 
 export const AllContacts = () => {
   const dispatch = useDispatch()
+  const [selectUser, setSelectUser] = useState(null)
   const { theme } = useSelector((store) => store.settingReducer);
   const [users, setUsers] = useState([]);
   const user1 = Auth.currentUser?.uid;
@@ -32,7 +34,7 @@ export const AllContacts = () => {
   return (
     <div className="allcontact" style={{ backgroundColor: theme[1] }}>
       {users.map((el) => (
-        <div className="all_contact" key={el.uid}>
+        <div className="all_contact" key={el.uid} style={{backgroundColor:el.uid===selectUser?"rgba(255, 255, 255, 0.2)":""}} onClick={()=>{dispatch(recieverUser(el)); setSelectUser(el.uid)}}>
           <div
             style={{
               height: "50px",
