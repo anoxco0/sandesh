@@ -61,14 +61,14 @@ export const MessegeBody = () => {
           className="messege_div"
           style={{
             borderRadius:
-              el.user === Auth.currentUser.email
+              el.from === Auth.currentUser.uid
                 ? "10px 0 10px 10px"
                 : "0 10px 10px 10px",
-            marginLeft: el.user === Auth.currentUser.email ? "auto" : "10%",
+            marginLeft: el.from === Auth.currentUser.uid ? "auto" : "10%",
             backgroundColor:
-              el.user === Auth.currentUser.email ? "#377D71" : "#2a3942",
+              el.from === Auth.currentUser.uid ? "#377D71" : "#2a3942",
             marginRight:
-              el.user === Auth.currentUser.email ? "10%" : "auto",
+              el.from === Auth.currentUser.uid ? "10%" : "auto",
             marginTop: "20px",
           }}>
             <div style={{ color: "white", fontSize: "20px"}} >
