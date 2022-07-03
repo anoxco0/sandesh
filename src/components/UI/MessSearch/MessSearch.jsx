@@ -7,22 +7,18 @@ import {  useState } from "react";
 import { Emoji } from "../../svg/Emoji";
 import { Clip } from "../../svg/Clip";
 import { Send } from "../../svg/Send";
-import { Mic } from "../../svg/Mic";
 
 export const MessSearch = () => {
   const { theme } = useSelector((store) => store.settingReducer);
-  const [Typing, setTyping] = useState(false);
   const {username}=useSelector(store=>store.authReducer);
   console.log(username)
   const [messege, setMessege] = useState("");
   async function focus() {
-    setTyping(true);
     await updateDoc(doc(db, "sandesh", Auth.currentUser.uid), {
       typing: true,
     });
   }
   async function blur() {
-    setTyping(false);
     await updateDoc(doc(db, "sandesh", Auth.currentUser.uid), {
       typing: false,
     });
@@ -71,16 +67,10 @@ export const MessSearch = () => {
         onFocus={focus}
         onBlur={blur}
       />
-      
-        {Typing ? (
+    
           <IconButton  onClick={()=>handleArrow()}>
             <Send/>
           </IconButton>
-        ) : (
-          <IconButton className="iconSvg"  >
-          <Mic/>
-      </IconButton>
-        )}
     </div>
   );
 };
