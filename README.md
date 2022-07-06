@@ -1,6 +1,22 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is build with [Create React App](https://github.com/facebook/create-react-app).
+
+##  Sandesh - a chat app
+
+This is a chat app where user can live chat or person to person.
+<br>
+<strong>##Web App</strong>.
+<br>
+Live here --> https://sandesh-navneet.netlify.app/
+<br>
+
+<strong>##ScreenShot</strong>
+
+<br>
+<a href="https://ibb.co/dmDvzn"><img src="https://navneet-kumar.vercel.app/static/media/Screenshot%20(1051).f075fb3899b12ce11e4a.png" height="500" weight="200" alt="Portfolio - Navneet Kumar" border="0"></a>
+<br>
+ This is basically my first app made using ReactJs, Redux, and CSS so there's a lot of room for improvements.
 
 ## Available Scripts
 
